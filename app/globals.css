@@ -24,3 +24,135 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* --- TREE CONTAINER & BASE STRUCTURE --- */
+.tree ul {
+    padding-top: 20px; 
+    position: relative;
+    display: flex;
+    justify-content: center;
+    transition: all 0.5s;
+}
+
+.tree li {
+    text-align: center;
+    list-style-type: none;
+    position: relative;
+    padding: 20px 5px 0 5px;
+    transition: all 0.5s;
+    flex: 1 1 auto; 
+}
+
+.tree li:only-child { 
+    padding-top: 0; 
+}
+
+/* --- CONNECTING LINES (BEFORE/AFTER) --- */
+.tree li::before, 
+.tree li::after {
+    content: '';
+    position: absolute; 
+    top: 0; 
+    right: 50%;
+    border-top: 2px solid #ccc;
+    width: 50%; 
+    height: 20px;
+}
+
+.tree li::after {
+    right: auto; 
+    left: 50%;
+    border-left: 2px solid #ccc;
+}
+
+.tree li:only-child::after, 
+.tree li:only-child::before {
+    display: none;
+}
+
+.tree li:first-child::after {
+    border-radius: 5px 0 0 0;
+}
+
+.tree li:last-child::before {
+    border-right: 2px solid #ccc;
+    border-radius: 0 5px 0 0;
+}
+
+.tree li:first-child::before, 
+.tree li:last-child::after {
+    border: 0 none;
+}
+
+/* --- VERTICAL CONNECTORS --- */
+.tree ul ul::before {
+    content: '';
+    position: absolute; 
+    top: 0; 
+    left: 50%;
+    border-left: 2px solid #ccc;
+    width: 0; 
+    height: 20px;
+    transition: border-color 0.3s ease;
+}
+
+/* --- HOVER EFFECTS & DYNAMIC HIGHLIGHTING --- */
+.tree li:has(.tree-node-group:hover) > ul::before,
+.tree li:has(ul .node-element:hover) > ul::before {
+    border-left-color: #3b82f6;
+}
+
+.tree ul:has(.node-element:hover)::before {
+    border-left-color: #3b82f6;
+}
+
+.node-element:hover + .tree-v-line {
+    background-color: #3b82f6 !important;
+}
+
+.tree-node-group:has(.node-element:hover) + ul ul::before,
+.tree-node-group:has(.node-element:hover) + ul ul::after {
+    border-color: #3b82f6 !important;
+}
+
+.tree-node-group:has(.node-element:hover) + ul li::before,
+.tree-node-group:has(.node-element:hover) + ul li::after {
+    border-color: #3b82f6 !important;
+}
+
+.tree-node-group:hover + ul .tree-v-line {
+    background-color: #3b82f6 !important;
+}
+
+.tree-node-group:has(.node-element:hover) + ul .tree-v-line {
+    background-color: #3b82f6 !important;
+}
+
+.tree-node-group:hover + ul .MuiPaper-root {
+    border-color: #3b82f6 !important;
+}
+
+.tree-node-group:hover + ul::before {
+    border-color: #3b82f6 !important;
+}
+
+/* --- DRAG AND DROP STATES --- */
+.tree li[style*="transform"] {
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.tree li[style*="transform"]::before,
+.tree li[style*="transform"]::after {
+    display: none !important;
+}
+
+.tree li[style*="transform"] ul::before {
+    border-color: #3b82f6; 
+}
+
+/* --- PLACEHOLDERS --- */
+.tree li.placeholder::before, 
+.tree li.placeholder::after {
+    display: none;
+}
