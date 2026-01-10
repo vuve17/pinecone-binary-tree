@@ -46,13 +46,13 @@ export const TreeNode: React.FC<TreeNodeProps> = ({
     data: node,
   });
 
-  const handleRename = () => {
-    onEdit(node.id, tempTitle);
-    setIsEditing(false);
-  };
-
 
   const inputMemoContent = useMemo(() => {
+    const handleRename = () => {
+      onEdit(node.id, tempTitle);
+      setIsEditing(false);
+    };
+
     if (!isEditing) return (
       <Typography
         variant="subtitle2"
@@ -66,6 +66,7 @@ export const TreeNode: React.FC<TreeNodeProps> = ({
         {node.title}
       </Typography>
     )
+
     return (
       <InputBase
         autoFocus
@@ -87,7 +88,7 @@ export const TreeNode: React.FC<TreeNodeProps> = ({
       />
     )
 
-  }, [isEditing, tempTitle, node.title, handleRename])
+  }, [isEditing, tempTitle, node.title, node.id, onEdit])
 
   return (
     <Box

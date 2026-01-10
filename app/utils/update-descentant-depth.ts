@@ -1,7 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 
-let i = 0;
-
 export async function updateDescendantsDepth(
   prisma: PrismaClient,
   parentId: number,
@@ -13,7 +11,6 @@ export async function updateDescendantsDepth(
 
   if (children.length) {
     for (const child of children) {
-      i++;
       const newDepth = parentDepth + 1;
       await prisma.node.update({
         where: { id: child.id },
