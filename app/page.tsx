@@ -164,7 +164,7 @@ export default function Home() {
       const validation = validateNodeDragAndDropMove(nodes, active.data.current as Node,
         over.data.current as Node, dispatch);
       if (!validation) return;
-      const updatedNode = await nodeService.reorder(activeNodeId, {
+      const updatedNode = await nodeService.reattach(activeNodeId, {
         parentNodeId: newParentId,
         ordering: ordering,
       });
@@ -236,7 +236,7 @@ export default function Home() {
                 noText="Cancel"
                 yesText="Delete"
                 question={`Are you sure you want to delete 
-"${nodeToDelete.title} node"?`}
+"${nodeToDelete.title}" node?`}
                 dialogText="Warning! This will also delete all of its 
 children nodes."
               />
@@ -252,7 +252,7 @@ children nodes."
                   isThisNodeBeingDragged={activeDraggingNode}
                 />
               ) : !isLoading && (
-                <p>No root node found. Seed your database.</p>
+                <p style={{color: "black"}}>No root node found. Seed your database.</p>
               )}
             </div>
           </DndContext>

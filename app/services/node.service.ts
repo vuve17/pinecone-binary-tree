@@ -23,8 +23,8 @@ export const nodeService = {
     return data;
   },
 
-  reorder: async (id: number, payload: Partial<Node>): Promise<Node> => {
-    const { data } = await apiClient.put<Node>(`/${id}`, payload);
+  reattach: async (id: number, payload: Partial<Node>): Promise<Node> => {
+    const { data } = await apiClient.patch<Node>(`/${id}/reattach`, payload);
     return data;
   },
 

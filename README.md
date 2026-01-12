@@ -1,3 +1,5 @@
+```bash
+
 🌳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🌳
         Binary Tree Manager
 🌳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🌳
@@ -11,6 +13,42 @@ A full-stack application for visualizing and managing hierarchical data structur
 • ⚡ Next.js  
 • 🐘 PostgreSQL  
 • 🔷 Prisma  
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔵 API Endpoints
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The application utilizes a RESTful API built on Next.js Route Handlers. All endpoints return JSON responses.
+
+## 1. Nodes (Collection)
+**Base path:** `/api/nodes`
+
+Used for working with the full nodes collection and building the initial tree structure.
+
+| Method | Endpoint      | Purpose |
+|------:|---------------|---------|
+| GET   | `/api/nodes`  | Fetches all nodes from the database to initially build the tree structure. |
+| POST  | `/api/nodes`  | Creates a new node.
+
+
+## 2. Individual Node
+
+**Base path:** `/api/nodes/:id`
+
+| Method | Endpoint         | Purpose |
+|------:|------------------|---------|
+| GET   | `/api/nodes/:id` | Fetches detailed information about a specific node. |
+| PATCH | `/api/nodes/:id` | Updates basic node fields (renaming the title). |
+| DELETE| `/api/nodes/:id` | Deletes the node and recursively removes its entire sub-tree (`onDelete: Cascade`). |
+
+## 3. Drag & Drop (Grafting)
+
+**Base path:** `/api/nodes/:id/reattach`
+
+| Method | Endpoint                  | Purpose |
+|------:|---------------------------|---------|
+| PATCH | `/api/nodes/:id/reattach` | Moves a node and its children under a new parent. |
+
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🚀 Getting Started
@@ -32,7 +70,7 @@ Open your terminal in the project root directory and run the commands below **in
 
 
 
-```bash
+
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📦 A. Install Dependencies

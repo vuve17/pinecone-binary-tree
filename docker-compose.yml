@@ -6,7 +6,7 @@ services:
     environment:
       POSTGRES_USER: devuser      
       POSTGRES_PASSWORD: devpassword 
-      POSTGRES_DB: pinecone-tree-db   
+      POSTGRES_DB: pinecone-binary-tree-db   
     ports:
       - '5433:5432'               
     volumes:

@@ -58,7 +58,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json(newNode, { status: 201 });
   } catch (error) {
-    console.error(error);
     return NextResponse.json(
       { error: "Failed to create node" },
       { status: 500 }
@@ -81,7 +80,6 @@ export async function GET(request: NextRequest) {
       status: 200,
     });
   } catch (error) {
-    console.error("Pagination Error:", error);
     return NextResponse.json(
       { error: "Failed to fetch level range" },
       { status: 500 }
